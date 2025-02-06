@@ -160,10 +160,3 @@ Funcionalidade: Navegação entre páginas no BugBank
     Então eu devo ser redirecionado para a página de registro
     E eu posso voltar para a página de login sem erros
 ```
-
----
-
-## Conclusão
-
-Este documento oferece uma cobertura completa das funcionalidades principais do BugBank, seguindo o padrão BDD. Use esses cenários como base para testes automatizados ou manuais.
-```
