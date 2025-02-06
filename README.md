@@ -1,8 +1,8 @@
-# Testes de Funcionalidade do BugBank
+# Cenário de Testes do BugBank
 
 Este documento descreve os cenários de teste para o site "BugBank", utilizando o padrão BDD (Behavior-Driven Development) com a sintaxe Gherkin. Os testes cobrem as funcionalidades essenciais do sistema.
 
-## Funcionalidades e Cenários de Teste
+## Cenários de Teste
 
 ### 1. Registro de Conta
 
