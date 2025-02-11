@@ -119,7 +119,7 @@ Funcionalidade: Verificação de saldo no BugBank
     Então o saldo da minha conta deve ser exibido corretamente na interface
 ```
 
-### 7. Logout
+### 6. Logout
 
 #### Cenário: Realizar logout com sucesso
 ```gherkin
@@ -132,7 +132,7 @@ Funcionalidade: Logout no BugBank
     E não devo mais estar logado
 ```
 
-### 8. Navegação entre Páginas
+### 7. Navegação entre Páginas
 
 #### Cenário: Navegar de uma página para outra sem erros
 ```gherkin
