@@ -14,7 +14,7 @@ public class BugBankNTestes {
         System.setProperty("webdriver.edge.driver", "C:/WebDriver/msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera explícita de 10 segundos
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.get("https://bugbank.netlify.app/");
     }
 
@@ -79,7 +79,7 @@ public class BugBankNTestes {
         String emailInvalido = "emailerrado";
         String nome = "Teste Usuario";
         String senha = "123456";
-        String senhaConfirmacao = "12345"; // Senha de confirmação diferente
+        String senhaConfirmacao = "12345";
 
         cadastroUsuarioComDadosInvalidos(emailInvalido, nome, senha, senhaConfirmacao);
     }

@@ -1,23 +1,24 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BugBankTestes {
+
     private WebDriver driver;
     private WebDriverWait wait;
+    private String contaDestino;
+    private String digitoDestino;
 
     @BeforeEach
     public void setUp() {
         System.setProperty("webdriver.edge.driver", "C:/WebDriver/msedgedriver.exe");
         driver = new EdgeDriver();
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera explícita de 10 segundos
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://bugbank.netlify.app/");
     }
 
@@ -44,6 +45,9 @@ public class BugBankTestes {
         WebElement confirmacaoDeSenha = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("passwordConfirmation")));
         confirmacaoDeSenha.sendKeys(senha);
 
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("document.getElementById('toggleAddBalance').click();");
+
         WebElement botaoCadastrar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/div/div[2]/div/div[2]/form/button")));
         botaoCadastrar.click();
 
@@ -60,77 +64,82 @@ public class BugBankTestes {
 
         WebElement botaoEntrar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/div/div[2]/div/div[1]/form/div[3]/button[1]")));
         botaoEntrar.click();
-
     }
-/*
-    // Método auxiliar para realizar logout
+
     private void logoutUsuario() {
-        JavascriptExecutor botaoLogout = (JavascriptExecutor) driver;
-        botaoLogout.executeScript("document.evaluate(\"//*[@id=\\\"__next\\\"]/div/div[1]/div\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();");
+        WebElement botaoLogout = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='btnExit']")));
+        botaoLogout.click();
     }
-    */
 
-/*
-    private void realizarTransferencia(String numeroConta, String digitoConta, String valor, String contaDescricao) {
-        // Passo 1: Clicar no botão de Transferência
-        WebElement botaoTransferir = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btn-TRANSFERÊNCIA")));
+    public void obterDadosContaDestino() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement contaElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='textAccountNumber']")));
 
-        // Verificar se o botão está clicável
-        WebElement botaoClicavel = wait.until(ExpectedConditions.elementToBeClickable(botaoTransferir));
+        String contaCompleta = contaElement.getText();
 
-        // Tentar rolar até o botão, caso necessário
-        Actions actions = new Actions(driver);
-        actions.moveToElement(botaoClicavel).click().perform();
+        String[] partes = contaCompleta.split("-");
 
-        // Passo 2: Preencher o campo de número da conta
-        WebElement inputContaDestino = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[3]/form/div[1]/div[1]/input")));
-        inputContaDestino.sendKeys(numeroConta);
-
-        // Passo 3: Preencher o campo de dígito da conta
-        WebElement inputDigito = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[3]/form/div[1]/div[2]/input")));
-        inputDigito.sendKeys(digitoConta);
-
-        // Passo 4: Preencher o valor da transferência
-        WebElement inputValor = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[3]/form/div[2]/input")));
-        inputValor.sendKeys(valor);
-
-        // Passo 5: Preencher a descrição da transferência
-        WebElement inputDescricao = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[3]/form/div[3]/input")));
-        inputDescricao.sendKeys(contaDescricao);
-
-        // Passo 6: Confirmar a transferência
-        WebElement botaoConfirmarTransferencia = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/div/div[3]/form/button")));
-        botaoConfirmarTransferencia.click();
-
-        // Passo 7: Verificar se a mensagem de sucesso é exibida
-        WebElement mensagemTransferencia = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Transferência realizada com sucesso')]")));
-        assertTrue(mensagemTransferencia.isDisplayed(), "Falha na transferência - mensagem de sucesso não exibida.");
+        if (partes.length == 2) {
+            this.contaDestino = partes[0].replaceAll("[^0-9]", "");
+            this.digitoDestino = partes[1].replaceAll("[^0-9]", "");
+        } else {
+            throw new RuntimeException("Formato da conta inválido. Esperado: 'número-dígito'");
+        }
     }
-*/
 
+    private void realizarTransferencia(String numeroConta, String digitoConta, String valorTransferencia, String descricaoTransferencia) {
+        WebElement transferenciaButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='btn-TRANSFERÊNCIA']")));
+        transferenciaButton.click();
+
+        WebElement contaInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("accountNumber")));
+        contaInput.sendKeys(numeroConta);
+
+        WebElement digitoInput = driver.findElement(By.name("digit"));
+        digitoInput.sendKeys(digitoConta);
+
+        WebElement valorInput = driver.findElement(By.name("transferValue"));
+        valorInput.sendKeys(valorTransferencia);
+
+        WebElement descricaoInput = driver.findElement(By.name("description"));
+        descricaoInput.sendKeys(descricaoTransferencia);
+
+        WebElement transferirButton = driver.findElement(By.xpath("//*[@id='__next']/div/div[3]/form/button"));
+        transferirButton.click();
+
+        WebElement mensagemSucesso = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='modalText']")));
+        mensagemSucesso.getText();
+    }
 
     @Test
+    @Order(1)
     public void testFluxoCompleto() {
-        String email = "tedeusuario@gmail.com";
-        String nome = "Teste Usuário";
-        String senha = "12345678";
+        String email1 = "tedeusuario1@gmail.com";
+        String nome1 = "Teste Usuário 1";
+        String senha1 = "12345678";
+
+        String email2 = "tedeusuario2@gmail.com";
+        String nome2 = "Teste Usuário 2";
+        String senha2 = "87654321";
+
         String valorTransferencia = "50";
-        String contaDestino = "123456";
-        String contaDigito = "9";
         String contaDescricao = "Olá, te enviei um pix!";
 
-        cadastroUsuario(email, nome, senha);
+        cadastroUsuario(email1, nome1, senha1);
 
-        loginUsuario(email, senha);
+        loginUsuario(email1, senha1);
 
-        /*
-        // Passo 3: Realizar Transferência
-        realizarTransferencia(contaDestino, contaDigito, valorTransferencia, contaDescricao);
-        +/
-         */
-        // Passo 4: Logout
-        /*
         logoutUsuario();
-         */
+
+        cadastroUsuario(email2, nome2, senha2);
+
+        loginUsuario(email2, senha2);
+
+        obterDadosContaDestino();
+
+        logoutUsuario();
+
+        loginUsuario(email1, senha1);
+
+        realizarTransferencia(contaDestino, digitoDestino, valorTransferencia, contaDescricao);
     }
 }
