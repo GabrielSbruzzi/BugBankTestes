@@ -119,22 +119,6 @@ Funcionalidade: Verificação de saldo no BugBank
     Então o saldo da minha conta deve ser exibido corretamente na interface
 ```
 
-### 6. Edição de Dados da Conta
-
-#### Cenário: Editar dados da minha conta (e-mail, nome)
-```gherkin
-Funcionalidade: Edição de dados da conta no BugBank
-
-  Cenário: Editar dados da minha conta (e-mail, nome)
-    Dado que eu esteja logado no BugBank
-    E eu tenha uma conta registrada
-    Quando eu acessar a página de edição de conta
-    E alterar os campos "Nome" e "E-mail"
-    E clicar no botão "Salvar"
-    Então os meus dados devem ser atualizados com sucesso
-    E uma mensagem de confirmação deve ser exibida
-```
-
 ### 7. Logout
 
 #### Cenário: Realizar logout com sucesso
