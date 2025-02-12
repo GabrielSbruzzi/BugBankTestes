@@ -1,6 +1,6 @@
 # Caso de Teste - Cadastro com o Mesmo Email
 **ID:** CT-002
-**Título:** Bug ao Permitir Cadastro Múltiplo com o Mesmo Email
+**Título:** Erro ao Permitir Cadastro Múltiplo com o Mesmo Email
 
 ## Pré-condições:
 - O usuário não está logado no sistema
