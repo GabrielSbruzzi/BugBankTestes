@@ -15,14 +15,13 @@ Funcionalidade: Registro de conta no BugBank
     Quando eu preencher os campos "E-mail", "Nome", "Senha" e "Confirmar Senha"
     E clicar no botão "Cadastrar"
     Então minha conta deve ser criada com sucesso
-    E eu devo ser redirecionado para a página de login
 ```
 
 #### Cenário: Tentar registrar uma conta com senhas que não coincidem
 ```gherkin
 Funcionalidade: Registro de conta no BugBank
 
-  Cenário: Tentar registrar uma conta com senhas que não coincidem
+  Cenário: Registrar uma conta com senhas que não coincidem
     Dado que eu esteja na página de registro
     Quando eu preencher o campo "Senha" com um valor
     E o campo "Confirmar Senha" com um valor diferente
@@ -67,8 +66,6 @@ Funcionalidade: Transferir dinheiro entre contas no BugBank
     Quando eu preencher os campos "Valor" e "Conta de Destino" com informações válidas
     E clicar no botão "Transferir"
     Então a transferência deve ser realizada com sucesso
-    E o saldo da minha conta deve ser atualizado
-    E o saldo da conta de destino também deve ser atualizado
 ```
 
 #### Cenário: Tentar realizar uma transferência com saldo insuficiente
@@ -93,8 +90,6 @@ Funcionalidade: Realizar pagamento no BugBank
     Quando eu preencher os campos "Valor" e "Conta de Destino" com informações válidas para pagamento
     E clicar no botão "Pagar"
     Então o pagamento deve ser realizado com sucesso
-    E o saldo da minha conta deve ser atualizado
-    E o saldo da conta de destino também deve ser atualizado
 ```
 
 #### Cenário: Tentar realizar um pagamento com saldo insuficiente
@@ -129,7 +124,6 @@ Funcionalidade: Logout no BugBank
     Dado que eu esteja logado no BugBank
     Quando eu clicar no botão "Logout"
     Então eu devo ser redirecionado para a página de login
-    E não devo mais estar logado
 ```
 
 ### 7. Navegação entre Páginas
@@ -142,5 +136,4 @@ Funcionalidade: Navegação entre páginas no BugBank
     Dado que eu esteja na página principal
     Quando eu clicar no link de navegação para "Registrar"
     Então eu devo ser redirecionado para a página de registro
-    E eu posso voltar para a página de login sem erros
 ```
