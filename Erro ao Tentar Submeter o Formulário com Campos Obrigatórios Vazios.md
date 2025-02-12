@@ -1,6 +1,6 @@
-# Caso de Teste - Bug no Nome do Campo "É Campo Obrigatório"
+# Erro ao Tentar Submeter o Formulário com Campos Obrigatórios Vazios
 **ID:** CT-001
-**Título:** Bug ao Tentar Submeter o Formulário com Campos Obrigatórios Vazios
+**Título:** Erro ao Tentar Submeter o Formulário com Campos Obrigatórios Vazios
 
 ## Pré-condições:
 - O usuário está na página de cadastro ou login
