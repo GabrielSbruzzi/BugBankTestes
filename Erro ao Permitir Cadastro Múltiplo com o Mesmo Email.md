@@ -1,4 +1,4 @@
-# Caso de Teste - Cadastro com o Mesmo Email
+# Erro ao Permitir Cadastro Múltiplo com o Mesmo Email
 **ID:** CT-002
 **Título:** Erro ao Permitir Cadastro Múltiplo com o Mesmo Email
 
