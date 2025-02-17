@@ -51,3 +51,21 @@ Os testes automatizados contemplam tanto cenários positivos quanto negativos:
 1. Clone este repositório:
    ```bash
    git clone https://github.com/GabrielSbruzzi/BugBankTestes.git
+
+
+## Estrutura do Projeto
+```bash
+BugBank/
+│
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── org.example/
+│   │           ├── Main.java
+│   │               
+│   └── test/
+│       └── java/
+│           ├──  BugBankNTestes.java (Testes com Dados Inválidos)   
+│           └──  BugBankTestes.java (Testes com Dados Válidos)   
+├── pom.xml                      
+└── README.md                 
