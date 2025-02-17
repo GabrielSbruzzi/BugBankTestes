@@ -149,3 +149,37 @@ Funcionalidade: Saque no BugBank
     Quando eu clicar no menu "Saque"
     Então uma modal deve ser exibida com a mensagem "Funcionalidade em desenvolvimento."
 ```
+
+### 9. Extrato de Conta
+
+#### Cenário: Acessar o extrato de conta com sucesso
+```gherkin
+Funcionalidade: Extrato de conta no BugBank
+
+  Cenário: Acessar o extrato de conta com sucesso
+    Dado que eu esteja logado no BugBank
+    E que eu tenha realizado transações na minha conta
+    Quando eu acessar a página de extrato
+    Então o extrato de conta deve ser exibido corretamente, mostrando todas as transações realizadas, com valores, datas e saldo atualizado
+```
+
+#### Cenário: Acessar o extrato de conta sem transações
+```gherkin
+Funcionalidade: Extrato de conta no BugBank
+
+  Cenário: Acessar o extrato de conta sem transações
+    Dado que eu esteja logado no BugBank
+    E que não tenha realizado transações na minha conta
+    Quando eu acessar a página de extrato
+    Então o sistema deve exibir uma mensagem indicando que não há transações ou o extrato estará vazio
+```
+
+#### Cenário: Tentar acessar o extrato com erro no carregamento
+```gherkin
+Funcionalidade: Extrato de conta no BugBank
+
+  Cenário: Tentar acessar o extrato com erro no carregamento
+    Dado que eu esteja logado no BugBank
+    Quando houver um erro ao carregar o extrato
+    Então o sistema deve exibir uma mensagem de erro indicando que houve uma falha ao carregar o extrato, com a opção de tentar novamente
+```
