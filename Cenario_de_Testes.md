@@ -158,7 +158,6 @@ Funcionalidade: Extrato de conta no BugBank
 
   Cenário: Acessar o extrato de conta com sucesso
     Dado que eu esteja logado no BugBank
-    E que eu tenha realizado transações na minha conta
     Quando eu acessar a página de extrato
     Então o extrato de conta deve ser exibido corretamente, mostrando todas as transações realizadas, com valores, datas e saldo atualizado
 ```
@@ -169,7 +168,6 @@ Funcionalidade: Extrato de conta no BugBank
 
   Cenário: Acessar o extrato de conta sem transações
     Dado que eu esteja logado no BugBank
-    E que não tenha realizado transações na minha conta
     Quando eu acessar a página de extrato
     Então o sistema deve exibir uma mensagem indicando que não há transações ou o extrato estará vazio
 ```
@@ -192,7 +190,6 @@ Funcionalidade: Realizar pagamento no BugBank
 
   Cenário: Realizar um pagamento com sucesso
     Dado que eu tenha uma conta com saldo disponível
-    E que eu tenha uma conta de destino para o pagamento
     Quando eu preencher os campos "Valor" e "Conta de Destino" com informações válidas para pagamento
     E clicar no botão "Pagar"
     Então o pagamento deve ser realizado com sucesso
