@@ -61,7 +61,7 @@ BugBank/
 │   ├── main/
 │   │   └── java/
 │   │       └── org.example/
-│   │           ├── Main.java
+│   │           └── Main.java
 │   │               
 │   └── test/
 │       └── java/
