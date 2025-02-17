@@ -147,5 +147,5 @@ Funcionalidade: Saque no BugBank
   Cenário: Clicar na opção "Saque" e exibir mensagem de desenvolvimento
     Dado que eu esteja logado no BugBank
     Quando eu clicar no menu "Saque"
-    Então uma modal deve ser exibida com a mensagem "A funcionalidade de saque está em desenvolvimento. Em breve, estará disponível para uso."
+    Então uma modal deve ser exibida com a mensagem "Funcionalidade em desenvolvimento."
 ```
