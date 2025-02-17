@@ -138,12 +138,6 @@ Funcionalidade: Navegação entre páginas no BugBank
     Então eu devo ser redirecionado para a página de registro
 ```
 
-Para adicionar o **cenário de teste do saque** ao seu documento BDD, que ainda está em desenvolvimento e exibe uma modal informativa quando o usuário clica na opção "Saque", podemos seguir a mesma estrutura do restante dos testes. O objetivo aqui é garantir que, ao tentar acessar a funcionalidade de saque, a interface mostre uma mensagem indicando que a funcionalidade está em desenvolvimento.
-
-Aqui está o **cenário de teste** adicionado:
-
----
-
 ### 8. Saque
 
 #### Cenário: Clicar na opção "Saque" e exibir mensagem de desenvolvimento
