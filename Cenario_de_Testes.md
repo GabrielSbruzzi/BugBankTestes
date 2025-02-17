@@ -182,7 +182,7 @@ Funcionalidade: Extrato de conta no BugBank
     Então o sistema deve exibir uma mensagem de erro indicando que houve uma falha ao carregar o extrato, com a opção de tentar novamente
 ```
 
-### 4. Pagamentos
+### 10. Pagamentos
 
 #### Cenário: Realizar um pagamento com sucesso
 ```gherkin
