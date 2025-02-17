@@ -183,3 +183,49 @@ Funcionalidade: Extrato de conta no BugBank
     Quando houver um erro ao carregar o extrato
     Então o sistema deve exibir uma mensagem de erro indicando que houve uma falha ao carregar o extrato, com a opção de tentar novamente
 ```
+
+### 4. Pagamentos
+
+#### Cenário: Realizar um pagamento com sucesso
+```gherkin
+Funcionalidade: Realizar pagamento no BugBank
+
+  Cenário: Realizar um pagamento com sucesso
+    Dado que eu tenha uma conta com saldo disponível
+    E que eu tenha uma conta de destino para o pagamento
+    Quando eu preencher os campos "Valor" e "Conta de Destino" com informações válidas para pagamento
+    E clicar no botão "Pagar"
+    Então o pagamento deve ser realizado com sucesso
+```
+
+#### Cenário: Tentar realizar um pagamento com saldo insuficiente
+```gherkin
+Funcionalidade: Realizar pagamento no BugBank
+
+  Cenário: Tentar realizar um pagamento com saldo insuficiente
+    Dado que eu tenha uma conta com saldo insuficiente
+    Quando eu tentar realizar um pagamento com valor maior que o saldo disponível
+    Então uma mensagem de erro deve ser exibida informando que o saldo é insuficiente
+```
+
+#### Cenário: Tentar realizar pagamento com dados inválidos
+```gherkin
+Funcionalidade: Realizar pagamento no BugBank
+
+  Cenário: Tentar realizar pagamento com dados inválidos
+    Dado que eu tenha uma conta com saldo disponível
+    Quando eu preencher o campo "Valor" com um valor inválido (ex: negativo, muito alto)
+    Ou o campo "Conta de Destino" com uma conta inválida
+    E clicar no botão "Pagar"
+    Então uma mensagem de erro deve ser exibida informando os dados inválidos
+```
+
+#### Cenário: Tentar realizar pagamento sem preencher todos os campos obrigatórios
+```gherkin
+Funcionalidade: Realizar pagamento no BugBank
+
+  Cenário: Tentar realizar pagamento sem preencher todos os campos obrigatórios
+    Dado que eu tenha uma conta com saldo disponível
+    Quando eu clicar no botão "Pagar" sem preencher o campo "Valor" ou "Conta de Destino"
+    Então uma mensagem de erro deve ser exibida informando que todos os campos são obrigatórios
+```
